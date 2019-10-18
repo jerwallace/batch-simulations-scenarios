@@ -99,14 +99,14 @@ To use the SAM CLI, you need the following tools.
 The SAM CLI uses an Amazon S3 bucket to store your application's deployment artifacts. If you don't have a bucket suitable for this purpose, create one. Replace `BUCKET_NAME` in the commands in this section with a unique bucket name.
 
 ```bash
-batch-simulation-scenarios$ aws s3 mb s3://BUCKET_NAME
+batch-simulations-scenarios$ aws s3 mb s3://BUCKET_NAME
 ```
 
 To prepare the application for deployment, use the `sam build` and `sam package` command.
 
 ```bash
-batch-simulation-scenarios$ sam build
-batch-simulation-scenarios$ sam package \
+batch-simulations-scenarios$ sam build
+batch-simulations-scenarios$ sam package \
     --output-template-file packaged.yaml \
     --s3-bucket BUCKET_NAME
 ```
@@ -116,17 +116,17 @@ The SAM CLI creates deployment packages, uploads them to the S3 bucket, and crea
 To deploy the application, use the `sam deploy` command.
 
 ```bash
-batch-simulation-scenarios$ sam deploy \
+batch-simulations-scenarios$ sam deploy \
     --template-file packaged.yaml \
-    --stack-name batch-simulation-scenarios \
+    --stack-name batch-simulations-scenarios \
     --capabilities CAPABILITY_IAM
 ```
 
 After deployment is complete you can run the following command to retrieve the API Gateway Endpoint URL:
 
 ```bash
-batch-simulation-scenarios$ aws cloudformation describe-stacks \
-    --stack-name batch-simulation-scenarios \
+batch-simulations-scenarios$ aws cloudformation describe-stacks \
+    --stack-name batch-simulations-scenarios \
     --query 'Stacks[].Outputs[?OutputKey==`HelloWorldApi`]' \
     --output table
 ``` 
@@ -136,7 +136,7 @@ batch-simulation-scenarios$ aws cloudformation describe-stacks \
 Build your application with the `sam build` command.
 
 ```bash
-batch-simulation-scenarios$ sam build
+batch-simulations-scenarios$ sam build
 ```
 
 The SAM CLI installs dependencies defined in `batch_simulations/requirements.txt`, creates a deployment package, and saves it in the `.aws-sam/build` folder.
@@ -146,7 +146,7 @@ Test a single function by invoking it directly with a test event. An event is a 
 Run functions locally and invoke them with the `sam local invoke` command.
 
 ```bash
-batch-simulation-scenarios$ sam local invoke batchsimulations --event events/event.json
+batch-simulations-scenarios$ sam local invoke batchsimulations --event events/event.json
 ```
 
 ## Add a resource to your application
@@ -159,7 +159,7 @@ To simplify troubleshooting, SAM CLI has a command called `sam logs`. `sam logs`
 `NOTE`: This command works for all AWS Lambda functions; not just the ones you deploy using SAM.
 
 ```bash
-batch-simulation-scenarios$ sam logs -n HelloWorldFunction --stack-name batch-simulation-scenarios --tail
+batch-simulations-scenarios$ sam logs -n HelloWorldFunction --stack-name batch-simulations-scenarios --tail
 ```
 
 You can find more information and examples about filtering Lambda function logs in the [SAM CLI Documentation](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-logging.html).
@@ -169,8 +169,8 @@ You can find more information and examples about filtering Lambda function logs 
 To delete the sample application and the bucket that you created, use the AWS CLI.
 
 ```bash
-batch-simulation-scenarios$ aws cloudformation delete-stack --stack-name batch-simulation-scenarios
-batch-simulation-scenarios$ aws s3 rb s3://BUCKET_NAME
+batch-simulations-scenarios$ aws cloudformation delete-stack --stack-name batch-simulations-scenarios
+batch-simulations-scenarios$ aws s3 rb s3://BUCKET_NAME
 ```
 ## Resources
 
