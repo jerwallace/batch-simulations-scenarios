@@ -15,7 +15,7 @@ Here is the event structure (what to send to the lambda function when you invoke
     {
         "wait": "5",
         "scenarios": {
-            "": {
+            "<SCENARIO_NAME>": {
                 "robotEnvironmentVariables": {},
                 "simEnvironmentVariables": {}
             }
@@ -27,7 +27,7 @@ Here is the event structure (what to send to the lambda function when you invoke
     }
 ```
 
-A **scenario** is created by defining a set of environment variables, a set for the robot and simulation applications defined. The collection of environment variables can be referenced when configuring the simulations jobs that you want to run in parallel. 
+A **scenario** is created by defining a set of environment variables, you can use these variables to setup the conditions for the scenario in the RoboMaker simulation job. They are references in the **simulations** array, each simulation referencing at least one scenario (or set of environment variables).
 
 **Example Scenario:**
 ```json
@@ -44,7 +44,7 @@ A **scenario** is created by defining a set of environment variables, a set for 
 ...
 ```
 
-Once you have defined a set of scenarios (or more simply, your groups of environment variables) you can associate a scenario with a simulation job. Each scenario, simulation pair will result in a single AWS RoboMaker CreateSimulation API call. For example, the below configuration will create **two** AWS RoboMaker simulation jobs. One for each of the scenarios (BasicSlowTest and LongFastTest). The **params** field expects the same request syntax as what the [create_simulation_job](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/robomaker.html#RoboMaker.Client.create_simulation_job) method expects, which is simply the parameters for your simulation job assets. 
+Once you have defined your scenarios (the sets of environment variables) you can associate a scenario with a simulation job. Each scenario + simulation pair will result in a single AWS RoboMaker CreateSimulationJob API call. For example, the below configuration will create **two** AWS RoboMaker simulation jobs. One for each of the scenarios (BasicSlowTest and LongFastTest). The **params** field expects the same request syntax as what the [create_simulation_job](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/robomaker.html#RoboMaker.Client.create_simulation_job) method expects, which is simply the parameters for your simulation job assets. 
 
 ```json
 ...
