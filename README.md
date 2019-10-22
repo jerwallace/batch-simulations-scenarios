@@ -27,7 +27,7 @@ Here is the event structure (what to send to the lambda function when you invoke
     }
 ```
 
-A **scenario** is created by defining a set of environment variables, you can use these variables to setup the conditions for the scenario in the RoboMaker simulation job. They are references in the **simulations** array, each simulation referencing at least one scenario (or set of environment variables).
+A **scenario** is created by defining a set of environment variables. You can use these variables to setup the conditions for the scenario in the RoboMaker simulation job. They are referenced in the **simulations** array, each simulation referencing at least one scenario (or set of environment variables).
 
 **Example Scenario:**
 ```json
